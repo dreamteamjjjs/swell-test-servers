@@ -7,3 +7,10 @@ Streaming Support: gRPC supports streaming requests and responses, allowing for 
 Interoperability and Scalability: It is designed for low latency and high scalability, which makes it suitable for connecting distributed services in microservices architecture.
 Security: Built-in security using TLS/SSL, and also supports other authentication mechanisms.
 This framework is particularly well-suited for building connected systems, offering both performance benefits and a structured approach to service interoperability.
+
+Start Up:
+
+1. node server.js
+2. node client.js
+
+// make sure to use localhost:number as the uri

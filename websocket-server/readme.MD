@@ -1,0 +1,8 @@
+WebSockets provide a way for web browsers and servers to exchange data without the overhead associated with traditional HTTP connections. WebSocket servers are specifically designed to handle this type of communication protocol. Here are a few key points about WebSocket servers:
+
+Real-time communication: Unlike HTTP, which is stateless, WebSockets provide a full-duplex communication channel that allows for continuous, bi-directional exchanges between the client and server. This makes it ideal for real-time applications like online games, live sports updates, chat applications, and more.
+Persistent connection: Once a WebSocket connection is established, it remains open, allowing data to be sent back and forth for as long as the connection is alive. This reduces latency as there's no need to establish a connection every time data is exchanged.
+Efficiency: WebSocket connections can send data in both text and binary formats. They are more efficient for smaller amounts of data which is beneficial for applications that require high-speed data transfers.
+HTML5 Specification: WebSockets are part of the HTML5 specification, which means they are supported by most modern web browsers.
+Server Requirements: To set up a WebSocket server, you need an environment capable of handling WebSocket protocols, such as Node.js, Python (with libraries like websockets or websocket-server), or other dedicated WebSocket servers like those available in Java or .NET frameworks.
+WebSocket servers thus play a crucial role in facilitating interactive and efficient web applications by maintaining a persistent, low-latency connection.

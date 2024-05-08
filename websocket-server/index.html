@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>WebSocket Client</title>
+  </head>
+  <body>
+    <h1>WebSocket Client</h1>
+    <button id="connect">Connect</button>
+    <button id="disconnect" disabled>Disconnect</button>
+    <p id="status">Status: Disconnected</p>
+    <input type="text" id="message" placeholder="Type a message..." />
+    <button id="send" disabled>Send</button>
+    <ul id="messages"></ul>
+
+    <script>
+      const statusElement = document.getElementById('status');
+      const messagesList = document.getElementById('messages');
+      const messageInput = document.getElementById('message');
+      const sendButton = document.getElementById('send');
+      const connectButton = document.getElementById('connect');
+      const disconnectButton = document.getElementById('disconnect');
+
+      let ws;
+
+      connectButton.onclick = function () {
+        // Change "ws://localhost:8080" to your WebSocket server URL if different
+        ws = new WebSocket('ws://localhost:8080');
+
+        ws.onopen = function () {
+          statusElement.innerHTML = 'Status: Connected';
+          connectButton.disabled = true;
+          disconnectButton.disabled = false;
+          sendButton.disabled = false;
+        };
+
+        ws.onmessage = function (event) {
+          const message = document.createElement('li');
+          message.textContent = 'Received: ' + event.data;
+          messagesList.appendChild(message);
+        };
+
+        ws.onclose = function () {
+          statusElement.innerHTML = 'Status: Disconnected';
+          connectButton.disabled = false;
+          disconnectButton.disabled = true;
+          sendButton.disabled = true;
+        };
+
+        ws.onerror = function () {
+          statusElement.innerHTML = 'Status: Error';
+        };
+      };
+
+      disconnectButton.onclick = function () {
+        ws.close();
+      };
+
+      sendButton.onclick = function () {
+        const message = messageInput.value;
+        ws.send(message);
+        const messageElement = document.createElement('li');
+        messageElement.textContent = 'Sent: ' + message;
+        messagesList.appendChild(messageElement);
+        messageInput.value = '';
+      };
+    </script>
+  </body>
+</html>

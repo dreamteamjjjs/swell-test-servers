@@ -11,13 +11,13 @@ function main() {
   const server = new grpc.Server();
   server.addService(hello_proto.Greeter.service, { sayHello: sayHello });
   server.bindAsync(
-    '0.0.0.0:50051',
+    'localhost:50051',
     grpc.ServerCredentials.createInsecure(),
     () => {
       server.start();
     }
   );
-  console.log('Server running at http://0.0.0.0:50051');
+  console.log('Server running at grpc://localhost:50051');
 }
 
 main();
